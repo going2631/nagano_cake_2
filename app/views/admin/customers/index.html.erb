@@ -1,0 +1,8 @@
+<h1>会員一覧</h1>
+
+<%= @customers.each do |customer|%>
+    <%= customer.id%>
+    <%= link_to "#{customer.last_name customer.first_name}",  admin_customer_path(customer.id)%>
+    <%= customer.email%>
+    <%= customer.is_deleted%>
+<% end %>
