@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :items
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :edit, :update, :show]
+    resources :orders, only: [:show, :update]
   end
 end

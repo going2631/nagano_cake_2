@@ -1,1 +1,10 @@
-<h1>管理者用トップページです</h1>
+<h1>注文履歴一覧</h1>
+
+<% @orders.each do |prder| %>
+    <%= link_to "#{order.created_at}", admin_order_path(order.id)%>
+    <%= order.name%>
+    <%= order.customer.last_name+order.customer.first_name%>
+    <%= order.order_details.Book.all.sum(:amount)%>
+    <%= order.status%>
+
+<% end %>
