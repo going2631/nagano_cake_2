@@ -5,10 +5,10 @@ class Admin::OrdersController < ApplicationController
         @order_details = @order.order_details
     end
     
-    def uodate
+    def update
         @order = Order.find(params[:id])
         if @order.update(order_params)
-            redirect_to admin_order_path(oarams[:id])
+            redirect_to admin_order_path(params[:id])
         end
     end
     

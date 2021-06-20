@@ -1,0 +1,22 @@
+<main>
+  <div class= "container">
+    <div class="row">
+      <div class="col-lg-4 px-4">
+        <%= attachment_image_tag @item, :image ,:fill,200,200%>
+      </div>    
+     
+    
+      <div class="col-lg-4">
+        <ul class="list-unstyled">
+          <li><%= @item.name %></li>
+          <li><%= @item.introduction%></li>
+          <li><%= @item.price*1.1 %></li>
+        </ul>
+            <%= form_with model: @cart_item , url:cart_items_path ,  method: :post, local:true do |f| %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.number_field :amount, min: "0" %>
+                <%= f.submit %>
+            <%end%>
+    </div>       
+  </div>        
+</main>

@@ -1,0 +1,21 @@
+<h1>注文履歴詳細</h1>
+
+<%= order.created_at%>
+<&= order.postal_code&>
+<%= order.addless%>
+<%= order.name%>
+<%= order.status%>
+
+<h1>請求情報</h1>
+<% @order.each { |order| @total += order.order_detail.item.price*order.order_detail.mount } %>
+<%= @total*1.1%>
+<%= @shipping_cost%>
+<%= @total*1.1+@shipping_cost%>
+
+<h1>注文内容</h1>
+<% @order_items.each do |order_item| %>
+    <%= order_item.item.name %>
+    <%= order_item.item.price*1.1 %>
+    <%= order_item.amount %>
+    <%= order_item.item.price*1.1**order_item.amount %>
+<% end %>
