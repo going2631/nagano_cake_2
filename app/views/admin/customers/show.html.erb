@@ -34,7 +34,11 @@
         </div>        
         <div class="form-group">  
            <label for="customer_is_deleted">会員ステータス</label>        
-             <%=@customer.is_deleted%>
+             <% if @customer.is_deleted == true%>
+                   <%= "退会済"%>
+                   <% else %>
+                   <%= "有効" %>
+                   <%end%>
         </div>
         
             <%= link_to "編集する",  edit_admin_customer_path(@customer.id) %>

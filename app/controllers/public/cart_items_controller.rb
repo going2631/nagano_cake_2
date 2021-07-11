@@ -1,4 +1,6 @@
 class Public::CartItemsController < ApplicationController
+    before_action :authenticate_customer!
+    # before_action :correct_cart_item, only: [:create, :update]
     
     def index
         @cart_items = current_customer.cart_items
@@ -47,6 +49,13 @@ class Public::CartItemsController < ApplicationController
         
         redirect_to cart_items_path
     end
+    
+    # def correct_cart_item
+    #       @cart_item = CartItem.find(params[:id])
+    #   unless @cart_item.customer.id == current_customer.id
+    #     redirect_to new_customer_session_path
+    #   end
+    # end
     
     private
     def cart_item_params

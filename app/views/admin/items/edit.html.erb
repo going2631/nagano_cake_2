@@ -17,11 +17,11 @@
                 <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction"%>  
             </div>
             <div class="form-group">    
-              <label for="item_price">税抜価格</label>
+              <label for="item_price">ジャンル</label>
                 <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank:"選択して下さい" %>
              </div>
             <div class="form-group">
-               <label for="item_genre">ジャンル</label>
+               <label for="item_genre">税抜価格</label>
                 <%= f.text_field:price, placeholder:"1000" %>
             </div>    
             <div class="form-group">

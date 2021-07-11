@@ -18,11 +18,20 @@
                  <th><%= customer.id%></th>
                  <th><%= link_to "#{customer.last_name+customer.first_name}",  admin_customer_path(customer.id)%></th>
                  <th><%= customer.email%></th>
-                 <th><%= customer.is_deleted%></th>
+                 <th>
+                   <% if customer.is_deleted == true%>
+                   <%= "退会済"%>
+                   <% else %>
+                   <%= "有効" %>
+                   <%end%>
+                </th>
+                 
                </tr>
              <% end %>
+             
            </tbody> 
          </table>
+        <%= paginate @customers %>
      </div>         
    </div>
 </main>

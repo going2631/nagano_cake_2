@@ -43,24 +43,24 @@
         <rr>      
          <div class="field">
             <th><%= f.label :postal_code %></th>
-            <th><%= f.text_field :postal_code, autofocus: true, autocomplete: "00000" %></th>
+            <th><%= f.text_field :new_postal_code, autofocus: true, autocomplete: "00000" %></th>
           </div>
         </tr>
         <tr>
          <div class="field">
             <th><%= f.label :address %></th>
-            <th><%= f.text_field :address, autofocus: true, autocomplete: "東京都渋⾕区代々⽊神園町0-0" %></th>
+            <th><%= f.text_field :new_address, autofocus: true, autocomplete: "東京都渋⾕区代々⽊神園町0-0" %></th>
           </div>
         </tr>
         <tr>    
           <div class="field">
             <th><%= f.label :name %></th>
-            <th><%= f.text_field :name, autofocus: true, autocomplete: "00000" %></th>
+            <th><%= f.text_field :new_name, autofocus: true, autocomplete: "00000" %></th>
           </div>
         </tr>
       </dl>
       </table>
-          <%= f.submit %>
+          <%= f.submit "確認画面へ進む"%>
     <%end%>
     
     <%#= link_to "注文内容を確認する", confirm_path, method: :post %>

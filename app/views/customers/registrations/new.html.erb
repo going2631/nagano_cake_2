@@ -1,66 +1,83 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
-  
-   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "道子" %>
-  </div>
-   
-   
-   <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "令和" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :first_name_kana %><br />
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "ミチコ" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :last_name_kana %><br />
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "レイワ" %>
-  </div>
-  
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-　
-　<div class="field">
-    <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code, autofocus: true, autocomplete: "00000" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "東京都渋⾕区代々⽊神園町0-0" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :telephone_number %><br />
-    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "0000000000" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "customers/shared/links" %>
+<main>
+  <div class= "container">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <h2>Sign up</h2>
+          <table class="table">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "customers/shared/error_messages", resource: resource %>
+              <tr>
+                <div class="field">
+                  <th>名前</th>
+                  <th>（姓）</th>
+                  <th><%= f.text_field :first_name, autofocus: true, autocomplete: "道子" %></th>
+                  <th>（名）</th>
+                  <th><%= f.text_field :last_name, autofocus: true, autocomplete: "令和" %></th>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <th>フリガナ</th>
+                  <th>（セイ）</th>
+                  <th><%= f.text_field :first_name_kana, autofocus: true, autocomplete: "ミチコ" %></th>
+                  <th>（メイ）</th>
+                  <th><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "レイワ" %></th>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <th>メールアドレス</th>
+                  <th></th>
+                  <th><%= f.email_field :email, autofocus: true, autocomplete: "email" %></th>
+                </div>
+              </tr>
+　            <tr>
+            　  <div class="field">
+                  <th>郵便番号（ハイフンなし）</th>
+                  <th></th>
+                  <th><%= f.text_field :postal_code, autofocus: true, autocomplete: "00000" %></th>
+               </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <th>住所</th>
+                  <th></th>
+                  <th><%= f.text_field :address, autofocus: true, autocomplete: "東京都渋⾕区代々⽊神園町0-0" %></th>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <th>電話番号（ハイフンなし）</th>
+                  <th></th>
+                  <th><%= f.text_field :telephone_number, autofocus: true, autocomplete: "0000000000" %></th>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <th>パスワード（６文字以上）</th>
+                  <th></th>
+                  <!--<%# if @minimum_password_length %>-->
+                  <!--<em>(<%#= @minimum_password_length %>文字以上)</em>-->
+                  <!--<%# end %><br />-->
+                  <th><%= f.password_field :password, autocomplete: "new-password" %></th>
+                </div>
+              </tr>
+              <tr>
+                <div class="field">
+                  <th>パスワード（確認用）</th>
+                  <th></th>
+                  <th><%= f.password_field :password_confirmation, autocomplete: "new-password" %></th>
+                </div>
+              </tr>
+              <tr>
+                <div class="actions">
+                  <th><%= f.submit "新規登録" %></th>
+                </div>
+              </tr>
+            <% end %>
+          </table>
+        <%= render "customers/shared/links" %>
+      </div>
+    </div>       
+  </div>        
+</main>

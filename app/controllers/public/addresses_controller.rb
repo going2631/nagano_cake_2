@@ -1,5 +1,9 @@
 class Public::AddressesController < ApplicationController
     
+    before_action :authenticate_customer!
+    # before_action :correct_address
+    
+    
     def index
         @address = Address.new
         @addresses = Address.where(customer_id: current_customer.id )
@@ -33,6 +37,13 @@ class Public::AddressesController < ApplicationController
         @address.destroy
         redirect_to address_path
     end
+    
+    # def correct_adress
+    #       @address = Address.find(params[:id])
+    #   unless @address.customer.id == current_customer.id
+    #     redirect_to new_customer_session_path
+    #   end
+    # end
     
     private
     

@@ -1,34 +1,53 @@
 <main>
   <div class= "container px-5 px-sm-0">
     <div class="row">
-      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <div class="col-sm-12 col-md-12 col-lg-12 px-5 px-sm-0 mx-auto">
 
         <h1>注文履歴詳細</h1>
-        <div class="form-group">  
-          <label for="order_name">購入者</label>
-            <%= @order.name%>
-        </div>
-        <div class="form-group">  
-          <label for="order_date">注文日</label>
-            <%= link_to "#{@order.created_at.strftime('%Y/%m/%d')}", admin_order_path %>
-        </div>
-        <div class="form-group">  
-          <label for="order_address_infomation">配送先</label>
-            <%= @order.postal_code+@order.address%>
-            <%= @order.name%>
-        </div>
-        <div class="form-group">  
-          <label for="order_payment_method">支払方法</label>
-            <%= @order.payment_method%>
-        </div>
-        <div class="form-group">  
-          <label for="order_status">注文ステータス</label>
-            <%= form_with model: @order, url: admin_order_path, method: :patch, local:true do |f|  %>
-              <%= f.select :status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["発送準備", "発送準備"], ["発送済み", "発送済み"]], include_blank: "選択して下さい" %>
-              <%= f.submit '変更を保存' %>
-            <% end %>
-        </div>  
-      <table class="table table-hover table-inverse">
+          <table class="table">
+            <tr>
+              <div class="form-group">  
+                <th><label for="order_name">購入者</label></th>
+                  <th><%= @order.name%></th>
+              </div>
+            </tr>
+            <tr>
+              <div class="form-group">  
+                <th><label for="order_date">注文日</label></th>
+                  <th><%= link_to "#{@order.created_at.strftime('%Y/%m/%d')}", admin_order_path %></th>
+              </di>
+            </tr>
+            <tr>
+              <div class="form-group">  
+                <th><label for="order_address_infomation">配送先</label></th>
+                  <th>
+                    <%= @order.postal_code+@order.address%><br>
+                    <%= @order.name%>
+                  </th>
+              </div>
+            </tr>
+            <tr>
+              <div class="form-group">  
+                <th><label for="order_payment_method">支払方法</label></th>
+                  <th><%= @order.payment_method%></th>
+              </div>
+            </tr>
+            <tr>
+              <div class="form-group">  
+                <th><label for="order_status">注文ステータス</label></th>
+                  <%= form_with model: @order, url: admin_order_path, method: :patch, local:true do |f|  %>
+                    <th>
+                      <%= f.select :status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "製作中"] ,["発送準備中", "発送準備中"], ["発送済み", "発送済み"]], include_blank: "選択して下さい" %>
+                      <%= f.submit '変更を保存' %>
+                    </th>
+                  <% end %>
+            </tr>
+          </table>
+      </div>  
+    </div>  
+    <div class="row">
+      <div class="col-sm-9 col-md-9 col-lg-9">
+      <table class="table">
         <thead>
           <tr>
             <th>商品名</th>
@@ -40,34 +59,43 @@
           </tr>
         </thead>
         <tbody>
-   
           <% @order_details.each do |order_detail|%>
             <tr>
-                <th><%= order_detail.item.name%></tr>
-                <th><%= order_detail.item.price * 1.1%></tr>
-                <th><%= order_detail.amount%></tr>
-                <th><%= order_detail.item.price * order_detail.amount* 1.1 %></tr>
-              <%= form_with model: @order_detail, url: admin_order_path, method: :patch, local:true do |f|  %></tr>
-                <th><%= f.select :making_status, [["製作不可", 0], ["製作待ち", 1], ["製作中", 2], ["製作完了", 3]], include_blank: "選択して下さい" %></tr>
-                <th><%= f.submit '変更を保存' %></tr>
+              <th><%= order_detail.item.name%></th>
+              <th><%= (order_detail.item.price * 1.1).floor%></th>
+              <th><%= order_detail.amount%></th>
+              <th><%=(order_detail.item.price * order_detail.amount* 1.1 ).floor%></th>
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch, local:true do |f|  %></th>
+                <th><%= f.select :making_status, [["製作不可", "製作不可"], ["製作待ち", "製作待ち"], ["製作中", "製作中"], ["製作完了", "製作完了"]], include_blank: "選択して下さい" %></th>
+                <th><%= f.submit '変更を保存' %></th>
               <% end %>
             </tr>  
-           <% end %>
-         <div class="row">
+          <% end %>
+        </tbody>
+        </table>
+      </div>
+      <div class="col-sm-3 col-md-3 col-lg-3">
+      <table class="table">
+        <tr>
            <div class="form-group">  
-             <label for="order_item_price">商品合計</label>
-               <%= %>
+             <th><label for="order_item_price">商品合計</label></th>
+               <th><%=@order.total_payment-@order.shipping_cost %></th>
            </div>
+        </tr>
+        <tr>
            <div class="form-group">  
-             <label for="order_shipment_price">送料</label>
-               <%= 800%>
+             <th><label for="order_shipment_price">送料</label></th>
+               <th><%= @order.shipping_cost %></th>
            </div>
+        </tr>
+        <tr>
            <div class="form-group">  
-             <label for="order_tptal_price">請求金額合計</label>
-               <%= +800%>
+             <th><label for="order_tptal_price">請求金額合計</label></th>
+               <th><%= @order.total_payment%></th>
            </div>
-         </div>
+        </tr>
       </table>
+      </div>
     </div>         
   </div>
 </main>

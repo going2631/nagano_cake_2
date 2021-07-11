@@ -5,13 +5,13 @@
 
         <h1>会員情報編集</h1>
         <table class="table">
-        <%= form_with model: @customer,url: customer_path, method: :patch, local:true do |f| %>
+        <%= form_with model: @customer,url: customer_path(@customer.id), method: :patch, local:true do |f| %>
         <tr>
           <div class="form-group">  
             <th><label for="customer_name">氏名</label></th>
               <th>
-                <%= f.text_field :last_name, autofocus: true, id:"inputLastName", placeholder:"LastName" %>
                 <%= f.text_field :first_name, autofocus: true, id:"inputFirstName", placeholder:"FirstName" %>
+                <%= f.text_field :last_name, autofocus: true, id:"inputLastName", placeholder:"LastName" %>
               </th>
           </div>
         </tr>
@@ -19,8 +19,8 @@
           <div class="form-group">  
             <th><label for="customer_name_kana">フリガナ</label></th>
              <th>
-               <%= f.text_field :last_name_kana, autofocus: true, id:"inputLastNameKana", placeholder:"LastNameKana" %>
                <%= f.text_field :first_name_kana, autofocus: true, id:"inputFirstNameKana", placeholder:"FirstNameKana" %>
+               <%= f.text_field :last_name_kana, autofocus: true, id:"inputLastNameKana", placeholder:"LastNameKana" %>
              </th>
           </div>
         </tr>
@@ -49,7 +49,7 @@
           </div>
         </tr>
         <tr>
-          <th><%= f.submit '編集内容を保存' %></th>
+          <th><%= f.submit '編集内容を保存'%></th>
         </tr>
         <% end %>
         </table>
